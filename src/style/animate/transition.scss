@@ -1,0 +1,48 @@
+// 页面切换过渡动画 横向渐变
+.fade-transverse-leave-active,
+.fade-transverse-enter-active {
+  transition: all 0.5s;
+}
+.fade-transverse-enter {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+.fade-transverse-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+// 搜索界面过渡动画 缩放渐变
+.fade-scale-leave-active,
+.fade-scale-enter-active {
+  transition: all 0.3s;
+}
+.fade-scale-enter {
+  opacity: 0;
+  transform: scale(1.2);
+}
+.fade-scale-leave-to {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+// 菜单区折叠动画
+.fade-width-enter-active,
+.fade-width-leave-active {
+  transition: all 0.3s;
+}
+.fade-width-enter,
+.fade-width-leave-to {
+  width: 64px;
+}
+
+// 输入框折叠动画
+.fade-ipt-width-enter-active,
+.fade-ipt-width-leave-active {
+  transition: all .4s ease;
+}
+.fade-ipt-width-enter,
+.fade-ipt-width-leave-to {
+  transform: translateX(-100px);
+  opacity: 0;
+}
