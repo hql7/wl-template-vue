@@ -1,4 +1,4 @@
-import { mockXHR } from "./index"
+import { mockXHR } from "wl-http"
 
 import menu from './data/menu'
 const mocks = [

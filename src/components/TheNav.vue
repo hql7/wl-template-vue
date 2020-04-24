@@ -26,7 +26,7 @@
 
 <script>
 import { mapActions } from "vuex";
-import { localDel } from "@/library/js/storage";
+import { Storage } from "wl-core";
 
 export default {
   name: "theNav",
@@ -84,7 +84,7 @@ export default {
       this.setToken("");
       this.setKeepPage([], true);
       this.setCurrentPage("");
-      localDel(this.GLOBAL.project_key);
+      Storage.del(this.GLOBAL.project_key);
       this.$router.push("/login");
     },
     ...mapActions("app", ["setToken"]),

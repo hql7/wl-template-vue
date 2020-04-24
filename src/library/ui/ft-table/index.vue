@@ -133,7 +133,7 @@
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
-import { localSet, localGet } from "@/library/js/storage";
+import { Storage } from "wl-core";
 
 export default {
   name: "FtTable",
@@ -309,7 +309,7 @@ export default {
     }
   },
   created() {
-    let localPageSize = localGet("pageSize");
+    let localPageSize = Storage.get("pageSize");
     if (localPageSize) {
       this.setPageSize(localPageSize);
     }
@@ -327,7 +327,7 @@ export default {
       this.$emit("size-change", size);
       this.$refs["tableRef"].bodyWrapper.scrollTop = 0;
       this.setPageSize(size);
-      localSet("pageSize", size);
+      Storage.set("pageSize", size);
     },
     //当前页数change
     handleCurrentChange(currentPage) {

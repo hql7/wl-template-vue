@@ -30,7 +30,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import { sessionGet } from "@/library/js/storage";
+import { Storage } from "wl-core";
 
 export default {
   name: "page-tabs",
@@ -55,11 +55,11 @@ export default {
   },
   created() {
     if (this.keepAlivePages.length === 0) {
-      let sessionPages = sessionGet("keep_alive");
+      let sessionPages = Storage.get("keep_alive", "session");
       this.setKeepPage(sessionPages, false);
     }
     if (!this.activeCurrent) {
-      let sessionActive = sessionGet("current") || "";
+      let sessionActive = Storage.get("keep_alive", "session") || "";
       this.$router.push(sessionActive);
       this.setCurrentPage(sessionActive);
     }

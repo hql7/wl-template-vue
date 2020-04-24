@@ -1,5 +1,5 @@
 import router from '@/router'
-import { sessionSet, sessionDel } from "@/library/js/storage"
+import { Storage } from "wl-core"
 export default {
   namespaced: true,
   state: {
@@ -10,14 +10,14 @@ export default {
     // 设置需要状态保持的页面
     SET_KEEP_ALIVE(state, data, session = true) {
       state.keep_alive = data;
-      session && sessionSet('keep_alive', data);
+      session && Storage.set('keep_alive', data, 'session');
     },
     // 添加一个新的需要状态保持的页面
     ADD_KEEP_ALIVE(state, data) {
       let _had = state.keep_alive.some(i => i.url === data.url);
       if (!_had) {
         state.keep_alive.push(data);
-        sessionSet('keep_alive', state.keep_alive);
+        Storage.set('keep_alive', state.keep_alive, 'session');
       }
     },
     // 关闭需要状态保持的页面
@@ -26,8 +26,8 @@ export default {
       if (state.keep_alive.length === 1) {
         state.keep_alive = [];
         state.current = '/index';
-        sessionSet('current', '/index');
-        sessionDel('keep_alive');
+        Storage.set('current', '/index', 'session');
+        Storage.del('keep_alive', 'session');
         router.push('/index');
         return;
       }
@@ -37,14 +37,14 @@ export default {
           if (state.keep_alive[i].url === data) {
             let _next_index = i < len - 1 ? i + 1 : i - 1;
             state.current = state.keep_alive[_next_index].url;
-            sessionSet('current', state.current);
+            Storage.set('current', state.current, 'session');
             router.push(state.current);
             break;
           }
         }
       }
       state.keep_alive = state.keep_alive.filter(i => i.url !== data);
-      sessionSet('keep_alive', state.keep_alive);
+      Storage.set('keep_alive', state.keep_alive, 'session');
     },
     // 关闭右侧需要状态保持的页面
     CLOSE_RIGHT_KEEP_ALIVE(state, data) {
@@ -62,10 +62,10 @@ export default {
         state.keep_alive = this._vm._.take(state.keep_alive, [_target_index + 1]);
         if (_target_index < _active_index) {
           state.current = data;
-          sessionSet('current', state.current);
+          Storage.set('current', state.current, "session");
           router.push(data);
         }
-        sessionSet('keep_alive', state.keep_alive);
+        Storage.set('keep_alive', state.keep_alive, 'session');
       }
     },
     // 关闭左侧需要状态保持的页面
@@ -84,10 +84,10 @@ export default {
         state.keep_alive = this._vm._.drop(state.keep_alive, [_target_index]);
         if (_active_index < _target_index) {
           state.current = data;
-          sessionSet('current', state.current);
+          Storage.set('current', state.current, 'session');
           router.push(data);
         }
-        sessionSet('keep_alive', state.keep_alive);
+        Storage.set('keep_alive', state.keep_alive, 'session');
       }
     },
     // 关闭其他需要状态保持的页面
@@ -95,21 +95,21 @@ export default {
       state.keep_alive = state.keep_alive.filter(i => i.url === data);
       state.current = data;
       router.push(data);
-      sessionSet('keep_alive', state.keep_alive);
-      sessionSet('current', state.current);
+      Storage.set('keep_alive', state.keep_alive, 'session');
+      Storage.set('current', state.current, 'session');
     },
     // 关闭全部需要状态保持的页面
     CLOSE_ALL_KEEP_ALIVE(state) {
       state.keep_alive = [];
       state.current = '/index';
-      sessionSet('current', '/index');
-      sessionDel('keep_alive');
+      Storage.set('current', '/index', 'session');
+      Storage.del('keep_alive', 'session');
       router.push('/index');
     },
     // 设置当前页面active
     SET_CURRENT(state, data) {
       state.current = data;
-      sessionSet('current', state.current);
+      Storage.set('current', state.current, 'session');
     },
   },
   actions: {
@@ -122,7 +122,7 @@ export default {
     // 添加一个新的需要状态保持的页面
     addKeepPage({ commit }, data) {
       commit('ADD_KEEP_ALIVE', data)
-    }, 
+    },
     // 关闭一个状态保持内的页面
     closeKeepPage({ commit }, data) {
       commit('CLOSE_KEEP_ALIVE', data)
