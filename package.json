@@ -1,6 +1,6 @@
 {
   "name": "wl-template-vue",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -17,7 +17,7 @@
     "wl-baseui": "^1.0.0",
     "wl-core": "^1.0.6",
     "wl-http": "^1.1.1",
-    "wl-vue": "^1.1.10"
+    "wl-vue": "^1.2.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.1.0",
