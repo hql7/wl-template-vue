@@ -9,12 +9,12 @@
       <!-- 上部导航区 -->
       <the-nav />
       <!-- 页面搜索组件 -->
-      <transition name="fade-scale">
+      <!--  <transition name="fade-scale">
         <div v-if="searchActive" class="layout-search"></div>
-      </transition>
+      </transition>-->
       <!-- 右侧内容区 -->
       <transition name="fade-scale">
-        <div class="main-container-view" v-if="!searchActive">
+        <div class="main-container-view">
           <!-- 标签页列表 -->
           <div class="view-tabs">
             <page-tabs />
@@ -51,7 +51,7 @@ export default {
     content: String
   },
   computed: {
-    ...mapGetters({ searchActive: "active", keepAlive: "keep_alive" })
+    ...mapGetters({ keepAlive: "keep_alive" })
   }
 };
 </script>

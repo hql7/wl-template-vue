@@ -29,7 +29,6 @@ const menus = [
 export default [
   {
     url: '/Api/GetMenusByUserId',
-    type: 'post',
     response: () => {
       return {
         code: 200,

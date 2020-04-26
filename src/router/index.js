@@ -29,7 +29,7 @@ const routes = [
   },
   // 404
   {
-    path: "/err-404",
+    path: "/err/404",
     name: "err404",
     meta: {
       withoutAuth: true

@@ -80,8 +80,6 @@ export default {
     Pagination,
     Tree,
     Popover,
-    Message,
-    MessageBox,
     Tag,
     Autocomplete,
     Col,
