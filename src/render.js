@@ -16,6 +16,7 @@ const menuOptions = {
   mapPathFn: (item) => routeMap(item.url)
 }
 
+// 导出手动实例化vue函数
 const vueRender = () => render({ root: App, router, store, routeOptions, nextRoutes, menuOptions });
 
 export default vueRender;
