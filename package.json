@@ -34,6 +34,7 @@
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^5.0.0",
     "husky": "^4.2.5",
+    "lint-staged": "^10.2.0",
     "mockjs": "^1.1.0",
     "node-sass": "^4.14.0",
     "prettier": "^1.19.1",
@@ -61,17 +62,15 @@
     "> 1%",
     "last 2 versions"
   ],
-  "gitHooks": {
-    "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS",
-    "pre-commit": "lint-staged"
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -e $GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
   },
   "lint-staged": {
-    "*.js": [
-      "vue-cli-service lint",
-      "git add"
-    ],
-    "*.vue": [
-      "vue-cli-service lint",
+    "src/**/*.{js,vue}": [
+      "eslint --fix",
       "git add"
     ]
   }
