@@ -59,7 +59,7 @@ export default {
       this.setKeepPage(sessionPages, false);
     }
     if (!this.activeCurrent) {
-      let sessionActive = Storage.get("keep_alive", "session") || "";
+      let sessionActive = Storage.get("current", "session") || "";
       this.$router.push(sessionActive);
       this.setCurrentPage(sessionActive);
     }

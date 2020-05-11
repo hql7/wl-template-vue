@@ -31,4 +31,4 @@ const hadToken = Storage.get('token');
 if (!hadToken) Storage.set('token', testToken);
 
 // 实例化vue
-vueRender()
+vueRender();

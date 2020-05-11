@@ -8,7 +8,8 @@ const menus = [
       {
         id: "1-1",
         title: "home",
-        url: "/home"
+        url: "/home",
+        permissions: ['home-add', 'home-edit']
       },
     ]
   },
@@ -20,8 +21,9 @@ const menus = [
       {
         id: "2-1",
         title: "about",
-        url: "/about"
-      }
+        url: "/about",
+        permissions: ['about-del']
+      },
     ] // 菜单数据
   }
 ]

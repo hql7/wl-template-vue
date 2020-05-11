@@ -29,5 +29,6 @@ module.exports = {
         prependData: `@import "./src/style/variables/variables.scss";`
       }
     }
-  }
+  },
+  chainWebpack: config => config.resolve.symlinks(false)
 };
