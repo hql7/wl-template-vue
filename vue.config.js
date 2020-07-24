@@ -1,6 +1,8 @@
 
 module.exports = {
   // publicPath: './',
+  filenameHashing: true,
+  productionSourceMap: false,
   devServer: {
     // host: '0.0.0.0',
     hot: true,
